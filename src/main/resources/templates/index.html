@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Стартовая страница</title>
+</head>
+<body>
+<div align="center">
+    <h2>Добро пожаловать на наш сайт!</h2>
+    <h2>Пожалуйста, авторизируйтесь или пройдите регистрацию!</h2>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <form sec:authorize="isAnonymous()" th:action="@{/login}" th:method="GET">
+        <input type="submit" value="Войти под своим именем и паролем"/>
+    </form>
+    <br/>
+    <form sec:authorize="isAnonymous()" th:action="@{/registration}" th:method="GET">
+        <input type="submit" value="     Зарегистрироваться на сайте       "/>
+    </form>
+    <br/>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="POST">
+            <input type="submit" value="               Выйти из сессии                  "/>
+        </form>
+</div>
+</body>
+</html>
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашняя страница пользователя</title>
+</head>
+<body>
+<div align="center" th:object="${currentUser}">
+    <h2><span>[[${#request.remoteUser}]]</span>, добро пожаловать на домашнюю страницу пользователя!</h2>
+    <h2>Информация о пользователе <span>[[${#request.remoteUser}]]</span>:</h2>
+    <table border="solid">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>E-mail</th>
+            <th>Password</th>
+            <th>Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="*{id}">...</td>
+            <td th:text="*{username}">...</td>
+            <td th:text="*{surname}">...</td>
+            <td th:text="*{age}">...</td>
+            <td th:text="*{email}">...</td>
+            <td th:text="*{password}">...</td>
+<!--            <td th:text="*{getRole()}">...</td>-->
+            <td th:text="*{getRole()}">...</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+    <form sec:authorize="hasAuthority('ROLE_ADMIN')" th:action="@{/admin}" th:method="GET">
+        <input type="submit" value="      Вернуться       "/>
+    </form>
+    <br/>
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value=" Выйти из сессии  "/>
+    </form>
+</div>
+</body>
+</body>
+</html>

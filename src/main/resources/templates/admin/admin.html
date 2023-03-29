@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница администратора</title>
+</head>
+<body>
+<div align="center">
+    <h2><span>[[${#request.remoteUser}]]</span>, добро пожаловать на страницу администратора!</h2>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <form th:action="@{/admin/users}" th:method="GET">
+        <input type="submit" value="     Список всех пользователей       "/>
+    </form>
+    <br/>
+    <form th:action="@{/admin}" th:method="GET">
+        <input type="submit" value=" Поиск пользователя (пока убрал)  "/>
+    </form>
+    <br/>
+    <form th:action="@{/admin/users/new}" th:method="GET">
+        <input type="submit" value="          Добавить пользователя         "/>
+    </form>
+    <br/>
+    <form th:action="@{/user}" th:method="GET">
+        <input type="submit" value="Домашняя страница пользователя"/>
+    </form>
+    <br/>
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value="               Выйти из сессии                "/>
+    </form>
+</div>
+</body>
+</html>

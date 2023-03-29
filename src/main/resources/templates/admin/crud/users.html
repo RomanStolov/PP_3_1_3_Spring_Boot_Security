@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Страница администратора со списком пользователей</title>
+</head>
+<body>
+<div align="center">
+    <h2>Список пользователей:</h2>
+    <br/>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>E-mail</th>
+            <th>Password</th>
+            <th>Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${listUsers}">
+            <td th:text="${user.id}"/>
+            <td th:text="${user.username}"/>
+            <td th:text="${user.surname}"/>
+            <td th:text="${user.age}"/>
+            <td th:text="${user.email}"/>
+            <td th:text="${user.password}"/>
+            <td th:text="${user.getRole()}"/>
+            <td>
+                <form th:method="GET" th:action="@{/admin/users/{id}/edit (id=${user.id})}">
+                    <input type="submit" value="Изменить"/>
+                </form>
+            </td>
+            <td>
+                <form th:method="POST" th:action="@{/admin/users/{id} (id=${user.id})}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+    <form th:action="@{/admin/users/new}" th:method="GET">
+        <input type="submit" value="Добавить пользователя"/>
+    </form>
+    <br/>
+    <form th:action="@{/admin}" th:method="GET">
+        <input type="submit" value="           Вернуться           "/>
+    </form>
+    <br/>
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value="      Выйти из сессии      "/>
+    </form>
+</div>
+</body>
+</html>
